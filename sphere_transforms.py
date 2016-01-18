@@ -229,11 +229,12 @@ def droste_effect(zoom_center_pixel_coords, zoom_factor, zoom_cutoff, source_ima
   """produces a zooming Droste effect image from an equirectangular source image"""
   # The source image should be a composite of the original image together with a zoomed version, 
   # fit inside a picture frame or similar in the original image
-  M_rot = rotate_pixel_coords_p_to_q(zoom_center_pixel_coords, (0,0), x_size = in_x_size)
-  M_rot_inv = matrix2_inv(M_rot)
   source_image = Image.open(source_image_filename)
   s_im = source_image.load()
   in_x_size, in_y_size = source_image.size
+  
+  M_rot = rotate_pixel_coords_p_to_q(zoom_center_pixel_coords, (0,0), x_size = in_x_size)
+  M_rot_inv = matrix2_inv(M_rot)
   if out_x_size == None:
     out_x_size, out_y_size = source_image.size
   else:
