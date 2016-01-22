@@ -294,6 +294,7 @@ def apply_SL2C_elt_to_image(M_SL2C, src_image, out_size=None):
     return o_im
 
 def main():
+    #PIL images index by (x,y), but numpy goes by order in memory: (y,x)
     source_image = np.array(Image.open('equirectangular_test_image.png'),dtype=np.float32)
     sz = source_image.shape[:-1]
     M = zoom_in_on_pixel_coords((179.5,360), 2, sz)
