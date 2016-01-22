@@ -292,16 +292,16 @@ def batch_transform_frames(in_dirname, out_dirname, M_func, frame_num_range = No
   for filename in filenames: 
     fullname = in_dirname + '/' + filename
     if not os.path.exists(fullname):
-      print 'file not found!'
+      print('file not found!')
     else:
       if filename[-4:] == '.png':
         frame_num = int(filename[-7:-4])
         if start <= frame_num < end:
-          print 'frame ', int(filename[-7:-4])
+          print('frame ', int(filename[-7:-4]))
           t = float(frame_num - fstart)/float((fend-1) - fstart)  ## 0.0 <= t <= 1.0
           M = M_func(t)
           apply_SL2C_elt_to_image( M, fullname, out_x_size = out_x_size, save_filename = out_dirname + '/' + filename )
-  print 'done'
+  print('done')
 
 ######## Useful functions to use when making transformation functions to put into batch_transform_frames
 
