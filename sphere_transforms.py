@@ -113,7 +113,7 @@ def two_triples_to_SL(a1,b1,c1,a2,b2,c2):
 
 def three_points_to_three_points_pixel_coords(p1, q1, r1, p2, q2, r2, x_size = 1000):
   """returns SL(2,C) matrix that sends the three pixel coordinate points a1,b1,c1 to a2,b2,c2"""
-  p1,q1,r1,p2,q2,r2 = [sphere_from_pixel_coords(point, x_size = x_size) for point in [p1,q1,r1,p2,q2,r2]]
+  p1,q1,r1,p2,q2,r2 = [CP1_from_sphere(sphere_from_pixel_coords(point, x_size = x_size)) for point in [p1,q1,r1,p2,q2,r2]]
   return two_triples_to_SL(p1,q1,r1,p2,q2,r2)
 
 def get_vector_perp_to_p_and_q(p, q):
