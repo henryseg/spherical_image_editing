@@ -22,7 +22,7 @@ def angles_from_pixel_coords(pts, size):
     pts = np.asarray(pts,dtype=np.float64) #turn into an ndarray if necessary
     ys,xs = size #row,col indexing
     out = np.empty_like(pts)
-    out[0] = pts[1]*2*pi/float(xs)
+    out[0] = (pts[1]+0.5)*2*pi/float(xs)     #+0.5 shift for pixel coords lining up properly
     out[1] = pts[0]*pi/float(ys-1) - 0.5*pi
     return out
 
@@ -44,7 +44,7 @@ def pixel_coords_from_angles(pts, size):
     pts = np.asarray(pts) #turn into an ndarray if necessary
     ys,xs = size #row, col indexing
     out = np.empty_like(pts)
-    out[1] = pts[0]*float(xs)/(2*pi)
+    out[1] = pts[0]*float(xs)/(2*pi) - 0.5  #-0.5 shift for pixel coords lining up properly
     out[0] = (pts[1] + 0.5*pi)*float(ys-1)/pi
     return out
 

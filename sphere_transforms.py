@@ -17,12 +17,12 @@ import cmath
 def angles_from_pixel_coords(point, x_size = 1000):
   """map from pixel coords to (0, 2*pi) x (-pi/2, pi/2) rectangle"""
   y_size = x_size/2  #assume equirectangular format
-  return (point[0] * 2*pi/float(x_size), point[1] * pi/float(y_size-1) - 0.5*pi)
+  return ((point[0] + 0.5)* 2*pi/float(x_size), point[1] * pi/float(y_size-1) - 0.5*pi)
 
 def pixel_coords_from_angles(point, x_size = 1000):
   """map from (0, 2*pi) x (-pi/2, pi/2) rectangle to pixel coords"""
   y_size = x_size/2  #assume equirectangular format
-  return (point[0] * float(x_size)/(2*pi), (point[1] + 0.5*pi)* float(y_size-1)/pi)
+  return (point[0] * float(x_size)/(2*pi) - 0.5, (point[1] + 0.5*pi)* float(y_size-1)/pi)
 
 def angles_from_sphere(point):
   """map from sphere in R^3 to (0, 2*pi) x (-pi/2, pi/2) rectangle (i.e. perform equirectangular projection)"""
